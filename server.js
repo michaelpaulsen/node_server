@@ -21,9 +21,6 @@ const server = http.createServer((req, res) => {
 		return;
 		/** give an error if the docroot envorment var is not set*/
 	}
-			return;
-		/** give an error if the e.DocRoot envorment var is not set*/
-	}
 	if( req.url == '/favicon.ico' && !e.favICO){
 		res.writeHead(200);
 		res.end();

@@ -1,6 +1,7 @@
 const http = require('http');
 const fs   = require('fs');
 const mime = require('mime-types');
+const PHP = require('./PHP.js');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -38,10 +39,14 @@ const server = http.createServer((req, res) => {
 			res.end();
 			return;
 		}
+		/** if file not found then */
 		var extention = url.split('.')[1]; 
 		if( url.split('.')[1] == "php" || url.split('.')[1] == "PHP"){ 
-			extention = html 
+			var tags = getTags(data);
+			console.log({tags:tags});
+			extention = 'html'; 
 		}
+		
 		res.writeHead(200, {
 			'Content-Type': mime.lookup(extention)
 			});

@@ -10,6 +10,7 @@ const favICO = false;
 const server = http.createServer((req, res) => {
 	if(DocRoot == null){
 		console.log("you must set the docroot befor this server will work");
+		res.writeHead(403);
 		return;
 		/** give an error if the docroot envorment var is not set*/
 	}

@@ -41,8 +41,12 @@ const server = http.createServer((req, res) => {
 			res.end();
 			return;
 		}
+		var extention = url.split('.')[1]; 
+		if( url.split('.')[1] == "php" || url.split('.')[1] == "PHP"){ 
+			extention = html 
+		}
 		res.writeHead(200, {
-			'Content-Type': mime.lookup(url.split('.')[1])
+			'Content-Type': mime.lookup(extention)
 			});
 		res.write(data);
 		res.end();

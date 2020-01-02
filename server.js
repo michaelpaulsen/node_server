@@ -10,6 +10,8 @@ const favICO = false;
 const server = http.createServer((req, res) => {
 	if(DocRoot == null){
 		console.log("you must set the docroot befor this server will work");
+		return;
+		/** give an error if the docroot envorment var is not set*/
 	}
 	if( req.url !== '/favicon.ico' || favICO){
 		var url = req.url;

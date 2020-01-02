@@ -35,7 +35,6 @@ const server = http.createServer((req, res) => {
 		url = '/index.html';
 	}
 	fs.readFile(e.DocRoot + url, function(err, data) {
-		console.log();
 		if(err){
 			res.writeHead(404);
 			res.end();

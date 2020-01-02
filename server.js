@@ -34,7 +34,6 @@ const server = http.createServer((req, res) => {
 	if( url == "/"){
 		url = '/index.html';
 	}
-	console.log( url.split('/')[url.split('/').length-1])
 	fs.readFile(e.DocRoot + url, function(err, data) {
 		console.log();
 		if(err){

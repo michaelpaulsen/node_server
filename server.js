@@ -1,6 +1,7 @@
 const http = require('http');
 const fs   = require('fs');
 const mime = require('mime-types');
+const PHP = require('./NSL.js');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -38,8 +39,16 @@ const server = http.createServer((req, res) => {
 			res.end();
 			return;
 		}
+		/** if file not found then */
+		var extention = url.split('.')[1]; 
+		if( url.split('.')[1] == "nsl" || url.split('.')[1] == "NSL"){ 
+			//var tags = PHP.getTags(data);
+			data = PHP.interpert(data);
+			extention = 'html'; 
+		}
+		
 		res.writeHead(200, {
-			'Content-Type': mime.lookup(url.split('.')[1])
+			'Content-Type': mime.lookup(extention)
 			});
 		res.write(data);
 		res.end();

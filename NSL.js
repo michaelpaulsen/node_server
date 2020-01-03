@@ -1,3 +1,43 @@
+var htmlSpecialChars(d){
+	d = d.toString();
+	var temp = ' ';
+	for(let x = 0; x < d.length; x++){
+		switch(d[x]){
+			case "&" { 
+				temp += "&amp;";
+				break;
+			}
+			case "<" { 
+				temp += "&lt;";
+				break;
+			}
+			case ">" { 
+				temp += "&gt;";
+				break;
+			}
+		}
+	}
+}
+this.htmlSpecialChars(d){
+	d = d.toString();
+	var temp = ' ';
+	for(let x = 0; x < d.length; x++){
+		switch(d[x]){
+			case "&" { 
+				temp += "&amp;";
+				break;
+			}
+			case "<" { 
+				temp += "&lt;";
+				break;
+			}
+			case ">" { 
+				temp += "&gt;";
+				break;
+			}
+		}
+	}
+}
  var getTags = function(d /** string */){
 	var tags = [];
 	if(typeof(d) == "object"){

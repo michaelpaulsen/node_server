@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
 	var url = req.url;
 	if( url == "/"){
 		url = '/index.html';
+	/** make it ignore any get pramiters */
+	if(url.split("?").length>1){
+		en.parseGet(url.split("?")[1]);
+		url = url.split("?")[0];
 	}
 	
 	fs.readFile(e.DocRoot + url, function(err, data) {

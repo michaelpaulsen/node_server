@@ -14,13 +14,13 @@ const server = http.createServer((req, res) => {
 		return;
 		/** give an error if the docroot envorment var is not set*/
 	}
-	
+	/**skips 404 error if you don't have a favICO*/
 	if( req.url == '/favicon.ico' && !e.favICO){
 		res.writeHead(200);
 		res.end();
 		return;
 	}
-	
+	/**rederects you to the index*/
 	var url = req.url;
 	if( url == "/"){
 		if(e.useNSLIndex){
@@ -34,14 +34,13 @@ const server = http.createServer((req, res) => {
 		en.parseGet(url.split("?")[1]);
 		url = url.split("?")[0];
 	}
-	
 	fs.readFile(e.DocRoot + url, function(err, data) {
+		/** if file not found then throw an 404*/
 		if(err){
 			res.writeHead(404);
 			res.end();
 			return;
 		}
-		/** if file not found then */
 		/** get the mime type and if it is NLS  */
 		var extention = url.split('.')[1].toLowerCase(); 
 		if( extention == "nsl"){ 

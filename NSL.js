@@ -1,43 +1,53 @@
-var htmlSpecialChars(d){
+function echo(str){ 
+	return str;
+}
+function htmlSpecialChars(d){
 	d = d.toString();
 	var temp = ' ';
 	for(let x = 0; x < d.length; x++){
 		switch(d[x]){
-			case "&" { 
+			case "&":{ 
 				temp += "&amp;";
 				break;
 			}
-			case "<" { 
+			case "<" :{ 
 				temp += "&lt;";
 				break;
 			}
-			case ">" { 
+			case ">" :{ 
 				temp += "&gt;";
 				break;
 			}
+			default:{
+				temp += d[x];
+			}
 		}
 	}
-}
-this.htmlSpecialChars(d){
+}		
+this.htmlSpecialChars = function(d){
 	d = d.toString();
 	var temp = ' ';
 	for(let x = 0; x < d.length; x++){
 		switch(d[x]){
-			case "&" { 
+			case "&":{ 
 				temp += "&amp;";
 				break;
 			}
-			case "<" { 
+			case "<" :{ 
 				temp += "&lt;";
 				break;
 			}
-			case ">" { 
+			case ">" :{ 
 				temp += "&gt;";
 				break;
+			}
+			default:{
+				temp += d[x];
 			}
 		}
 	}
 }
+
  var getTags = function(d /** string */){
 	var tags = [];
 	if(typeof(d) == "object"){
@@ -82,13 +92,23 @@ this.interpert = function(d){
 		if(isNodeTag){
 			var val = '';
 			while( isNodeTag && x < d.length){
-				if(d[x] == ">") {isNodeTag = false;}
 				val += d[x];
+				if(d[x] == ">") {isNodeTag = false; break;}
 				x++;
 			}
 			console.log({'x':x,val:val.slice(5,val.length-1)});
-			val = val.slice(5,val.length-1);
-			eval(val);
+			val = val.slice(5,val.length-1).split(";");
+			for(i = 0; i<val.length;i++){
+				if(val[i].match(regex)){
+					console.log("test");
+				}
+			
+				if(val[i].split("(")[0].trim() == "echo"){
+					d+=eval(val[i]);
+				}else{
+					eval(val[i]);
+				}
+			}
 		}else {
 			str+=d[x];
 		}

@@ -23,7 +23,12 @@ const server = http.createServer((req, res) => {
 	
 	var url = req.url;
 	if( url == "/"){
-		url = '/index.html';
+		if(e.useNSLIndex){
+			url = "/index.NSL"
+		}else{
+			url = '/index.html';
+		}
+	}
 	/** make it ignore any get pramiters */
 	if(url.split("?").length>1){
 		en.parseGet(url.split("?")[1]);

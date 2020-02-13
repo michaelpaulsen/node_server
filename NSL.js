@@ -79,7 +79,6 @@ this.interpert = function(d){
 	var ntag = '<node ';
 	var usesNode = false;
 	var isNodeTag;
-	console.log({"d":d,"d2":d[d.length-1]})
 	for(x = 0; x < d.length; x++){
 		if(d[x] == "<" ){	
 			var tag = d.slice(x,x+6);
@@ -96,7 +95,6 @@ this.interpert = function(d){
 				if(d[x] == ">") {isNodeTag = false; break;}
 				x++;
 			}
-			console.log({'x':x,val:val.slice(5,val.length-1)});
 			val = val.slice(5,val.length-1).split(";");
 			for(i = 0; i<val.length;i++){
 				if(val[i].match(regex)){

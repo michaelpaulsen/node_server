@@ -42,10 +42,11 @@ const server = http.createServer((req, res) => {
 			return;
 		}
 		/** if file not found then */
-		var extention = url.split('.')[1]; 
-		if( url.split('.')[1] == "nsl" || url.split('.')[1] == "NSL"){ 
-			//var tags = PHP.getTags(data);
-			data = PHP.interpert(data);
+		/** get the mime type and if it is NLS  */
+		var extention = url.split('.')[1].toLowerCase(); 
+		if( extention == "nsl"){ 
+			//var tags = NSL.getTags(data);
+			data = NSL.interpert(data);
 			extention = 'html'; 
 		}
 		

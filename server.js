@@ -36,22 +36,28 @@ const server = http.createServer((req, res) => {
 	}
 	fs.readFile(e.DocRoot + url, function(err, data) {
 		/** if file not found then throw an 404*/
+		var extention = url.split('.')[1].toLowerCase().trim(); 
 		if(err){
+			if(extention == "nls"){
+				res.writeHead(200, {
+						'Content-Type': mime.lookup(".txt")
+				});
+					res.write("404 : file not found");
+			}
 			res.writeHead(404);
 			res.end();
 			return;
 		}
-		/** get the mime type and if it is NLS  */
-		var extention = url.split('.')[1].toLowerCase(); 
+		/** get the mime type and if it is NLS  interpert it then say that it is html */
 		if( extention == "nsl"){ 
 			//var tags = NSL.getTags(data);
 			data = NSL.interpert(data);
 			extention = 'html'; 
 		}
 		
-		res.writeHead(200, {
-			'Content-Type': mime.lookup(extention)
-			});
+		res.writeHead(200,{
+			'Content-Type': mime.lookup(".txt")
+		});	
 		res.write(data);
 		res.end();
 	});	

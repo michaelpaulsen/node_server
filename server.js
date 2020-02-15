@@ -1,7 +1,7 @@
 const http = require('http');
 const fs   = require('fs');
 const mime = require('mime-types');
-const PHP = require('./NSL.js');
+const NSL = require('./NSL.js');
 
 const en = require('./envorment.js');
 const hostname = '127.0.0.1';

@@ -97,10 +97,6 @@ this.interpert = function(d){
 			}
 			val = val.slice(5,val.length-1).split(";");
 			for(i = 0; i<val.length;i++){
-				if(val[i].match(regex)){
-					console.log("test");
-				}
-			
 				if(val[i].split("(")[0].trim() == "echo"){
 					d+=eval(val[i]);
 				}else{

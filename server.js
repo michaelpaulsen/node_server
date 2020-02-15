@@ -40,8 +40,9 @@ const server = http.createServer((req, res) => {
 		if(err){
 			if(extention == "nls"){
 				res.writeHead(200, {
-					'Content-Type': mime.lookup(".txt")
+						'Content-Type': mime.lookup("html")
 				});
+				res.write("<html><body><hr /> 404 error <hr /> </body></html>")
 				res.end();
 				return;
 			}
@@ -58,7 +59,7 @@ const server = http.createServer((req, res) => {
 		}
 		
 		res.writeHead(200,{
-			'Content-Type': mime.lookup(".txt")
+			'Content-Type': mime.lookup(extention)
 		});	
 		res.write(data);
 		res.end();

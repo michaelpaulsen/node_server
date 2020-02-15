@@ -42,7 +42,10 @@ const server = http.createServer((req, res) => {
 				res.writeHead(200, {
 						'Content-Type': mime.lookup(".txt")
 				});
-					res.write("404 : file not found");
+				res.end();
+				return;
+			}
+			res.write("404 : file not found");
 			}
 			res.writeHead(404);
 			res.end();
